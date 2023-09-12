@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <UserSecretsId>aspnet-TopRecepti-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\stylecop.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="TopRecepti.Web.Tests" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.3" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.3" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TopRecepti.Common\TopRecepti.Common.csproj" />
+    <ProjectReference Include="..\..\Data\TopRecepti.Data.Models\TopRecepti.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\TopRecepti.Data\TopRecepti.Data.csproj" />
+    <ProjectReference Include="..\..\Services\TopRecepti.Services.Data\TopRecepti.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\TopRecepti.Services.Mapping\TopRecepti.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\TopRecepti.Services.Messaging\TopRecepti.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\TopRecepti.Services\TopRecepti.Services.csproj" />
+    <ProjectReference Include="..\TopRecepti.Web.Infrastructure\TopRecepti.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\TopRecepti.Web.ViewModels\TopRecepti.Web.ViewModels.csproj" />
+  </ItemGroup>
+</Project>

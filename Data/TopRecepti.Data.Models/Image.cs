@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopRecepti.Data.Common.Models;
-
-namespace TopRecepti.Data.Models
+﻿namespace TopRecepti.Data.Models
 {
-    public class Image:BaseModel<string>
+    using System;
+
+    using TopRecepti.Data.Common.Models;
+
+    public class Image : BaseModel<string>
     {
         public Image()
         {

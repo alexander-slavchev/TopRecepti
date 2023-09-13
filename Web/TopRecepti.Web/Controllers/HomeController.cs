@@ -1,16 +1,27 @@
 ﻿namespace TopRecepti.Web.Controllers
 {
     using System.Diagnostics;
-
-    using TopRecepti.Web.ViewModels;
-
+    using System.Linq;
     using Microsoft.AspNetCore.Mvc;
+    using TopRecepti.Data;
+    using TopRecepti.Data.Common.Repositories;
+    using TopRecepti.Data.Models;
+    using TopRecepti.Services.Data;
+    using TopRecepti.Web.ViewModels;
+    using TopRecepti.Web.ViewModels.Home;
 
     public class HomeController : BaseController
     {
+        private readonly IGetCountsService countsService;
+
+        public HomeController(IGetCountsService countsService)
+        {
+            this.countsService = countsService;
+        }
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = this.countsService.GetCounts();
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TopRecepti.Data.Common\TopRecepti.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\TopRecepti.Data.Models\TopRecepti.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\TopRecepti.Web.ViewModels\TopRecepti.Web.ViewModels.csproj" />
     <ProjectReference Include="..\TopRecepti.Services.Mapping\TopRecepti.Services.Mapping.csproj" />
   </ItemGroup>
 

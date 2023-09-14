@@ -1,22 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TopRecepti.Web.ViewModels.Recipes;
-
-namespace TopRecepti.Web.Controllers
+﻿namespace TopRecepti.Web.Controllers
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+    using TopRecepti.Services.Data;
+    using TopRecepti.Web.ViewModels.Recipes;
+
     public class RecipesController : Controller
     {
+        private readonly ICategoriesService categoriesService;
+        private readonly IRecipesService recipesService;
+
+        public RecipesController(
+            ICategoriesService categoriesService,
+            IRecipesService recipesService)
+        {
+            this.categoriesService = categoriesService;
+            this.recipesService = recipesService;
+        }
         public IActionResult Create()
         {
-            return this.View();
+            var viewModel = new CreateRecipeInputModel();
+            viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            return this.View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(CreateRecipeInputModel input)
+        public async Task<IActionResult> Create(CreateRecipeInputModel input)
         {
             if (this.ModelState.IsValid)
             {
-                return this.View();
+                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                return this.View(input);
             }
+
+            await this.recipesService.CreateAsync(input);
 
             return this.Redirect("/");
         }

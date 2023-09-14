@@ -5,12 +5,10 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using TopRecepti.Data.Common.Models;
-    using TopRecepti.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using TopRecepti.Data.Common.Models;
+    using TopRecepti.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {

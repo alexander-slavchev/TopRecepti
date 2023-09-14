@@ -3,12 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using TopRecepti.Data.Common.Repositories;
     using TopRecepti.Data.Models;
     using TopRecepti.Services.Data;
     using TopRecepti.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {

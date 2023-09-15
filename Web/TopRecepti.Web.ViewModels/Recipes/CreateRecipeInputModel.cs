@@ -20,11 +20,11 @@ namespace TopRecepti.Web.ViewModels.Recipes
 
         [Display(Name = "Preparation time (in minutes)")]
         [Range(0, 24 * 60)]
-        public TimeSpan PreparationTime { get; set; }
+        public int PreparationTime { get; set; }
 
         [Range(0, 24 * 60)]
         [Display(Name = "Cooking time (in minutes)")]
-        public TimeSpan CookingTime { get; set; }
+        public int CookingTime { get; set; }
 
         [Required]
         [Range(0.5, 100)]

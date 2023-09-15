@@ -1,5 +1,6 @@
 ﻿namespace TopRecepti.Services.Data
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using TopRecepti.Data.Common.Repositories;
@@ -24,11 +25,11 @@
             var recipe = new Recipe
             {
                 CategoryId = input.CategoryId,
-                CookingTime =input.CookingTime,
+                CookingTime = TimeSpan.FromMinutes(input.CookingTime),
                 Instructions = input.Instructions,
                 Name = input.Name,
                 PortionCount = input.PortionCount,
-                PreparationTime = input.PreparationTime,
+                PreparationTime = TimeSpan.FromMinutes(input.PreparationTime),
             };
             foreach (var inputIngredient in input.Ingredients) 
             {

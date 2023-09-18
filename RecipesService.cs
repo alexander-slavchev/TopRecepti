@@ -26,7 +26,7 @@
             {
                 CategoryId = input.CategoryId,
                 CookingTime = TimeSpan.FromMinutes(input.CookingTime),
-                Instructions = input.Instructions,
+                Instructions =  input.Instructions,
                 Name = input.Name,
                 PortionCount = input.PortionCount,
                 PreparationTime = TimeSpan.FromMinutes(input.PreparationTime),

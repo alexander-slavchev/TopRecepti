@@ -25,7 +25,6 @@
 
             var seeders = new List<ISeeder>
                           {
-                              new CategoriesSeeder(),
                               new RolesSeeder(),
                               new SettingsSeeder(),
                           };

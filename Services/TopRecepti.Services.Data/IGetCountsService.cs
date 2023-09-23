@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopRecepti.Web.ViewModels.Home;
-
-namespace TopRecepti.Services.Data
+﻿namespace TopRecepti.Services.Data
 {
+    using TopRecepti.Web.ViewModels.Home;
+
     public interface IGetCountsService
     {
         IndexViewModel GetCounts();

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TopRecepti.Data.Common.Repositories;
-using TopRecepti.Data.Models;
-using TopRecepti.Web.ViewModels.Home;
-
-namespace TopRecepti.Services.Data
+﻿namespace TopRecepti.Services.Data
 {
+    using System.Linq;
+    using TopRecepti.Data.Common.Repositories;
+    using TopRecepti.Data.Models;
+    using TopRecepti.Web.ViewModels.Home;
+
     public class GetCountsService : IGetCountsService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
@@ -39,5 +35,6 @@ namespace TopRecepti.Services.Data
             };
             return data;
         }
+
     }
 }

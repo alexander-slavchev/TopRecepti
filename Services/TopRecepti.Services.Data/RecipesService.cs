@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using TopRecepti.Data.Common.Repositories;
     using TopRecepti.Data.Models;
-    using TopRecepti.Services.Mapping;
     using TopRecepti.Web.ViewModels.Recipes;
 
     public class RecipesService : IRecipesService
@@ -53,19 +52,24 @@
             await this.recipesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        public IEnumerable<RecipeInListViewModel> GetAll(int page, int itemsPerPage = 12)
         {
             var recipes = this.recipesRepository.AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                .To<T>()
-                .ToList();
-            return recipes;
-        }
+                .Select(x => new RecipeInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryName = x.Category.Name,
+                    CategoryId = x.Category.Id,
+                    ImageUrl =
+                        x.Images.FirstOrDefault().RemoteImageUrl != null ?
+                        x.Images.FirstOrDefault().RemoteImageUrl :
+                        "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension,
 
-        public int GetCount()
-        {
-            return this.recipesRepository.All().Count();
+                }).ToList();
+            return recipes;
         }
     }
 }

@@ -22,7 +22,7 @@
 
         public int PortionCount { get; set; }
 
-        public string AddedByUsedId { get; set; }
+        public string AddedByUserId { get; set; }
 
         public virtual ApplicationUser AddedByUser { get; set; }
 

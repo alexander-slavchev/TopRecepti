@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
-namespace TopRecepti.Web.ViewModels.Recipes
+﻿namespace TopRecepti.Web.ViewModels.Recipes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Http;
+
     public class CreateRecipeInputModel
     {
         [Required]
@@ -34,9 +32,13 @@ namespace TopRecepti.Web.ViewModels.Recipes
 
         public int CategoryId { get; set; }
 
+        [Required]
+        public IEnumerable<IFormFile> Images { get; set; }
+
         public IEnumerable<CreateRecipeInputModel> Ingredients { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
-        public string IngredientName { get; set; }
+        
+        //public string IngredientName { get; set; }
     }
 }

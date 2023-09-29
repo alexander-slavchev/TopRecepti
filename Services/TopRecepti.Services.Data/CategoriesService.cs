@@ -18,8 +18,11 @@
         {
             return this.categoriesRepository.All().Select(x => new
             {
-                x.Name, x.Id,
-            }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                x.Name,
+                x.Id,
+            })
+            .ToList()
+            .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
     }
 }

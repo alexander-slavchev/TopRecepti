@@ -19,6 +19,7 @@ namespace TopRecepti.Data.Seeding
             await dbContext.Categories.AddAsync(new Category { Name = "Чушка" });
             await dbContext.Categories.AddAsync(new Category { Name = "Торта" });
             await dbContext.Categories.AddAsync(new Category { Name = "Свинско" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Телешко" });
 
             await dbContext.SaveChangesAsync();
         }

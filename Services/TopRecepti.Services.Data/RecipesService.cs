@@ -37,7 +37,7 @@
                 AddedByUserId = userId,
             };
 
-            foreach (var inputIngredient in input.Ingredients) 
+            foreach (var inputIngredient in input.Ingredients)
             {
                 var ingredient = this.ingredientsRepository.All().FirstOrDefault(x => x.Name == inputIngredient.IngredientName);
                 if (ingredient == null)
@@ -89,6 +89,15 @@
                 .To<T>()
                 .ToList();
             return recipes;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var recipe = this.recipesRepository.AllAsNoTracking().Where(x => x.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+
+            return recipe;
         }
 
         public int GetCount()

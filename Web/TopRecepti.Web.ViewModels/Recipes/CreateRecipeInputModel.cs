@@ -35,10 +35,8 @@
         [Required]
         public IEnumerable<IFormFile> Images { get; set; }
 
-        public IEnumerable<CreateRecipeInputModel> Ingredients { get; set; }
+        public IEnumerable<RecipeIngredientInputModel> Ingredients { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
-        
-        //public string IngredientName { get; set; }
     }
 }

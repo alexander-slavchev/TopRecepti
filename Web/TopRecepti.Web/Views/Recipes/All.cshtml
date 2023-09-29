@@ -20,6 +20,19 @@
 
 <hr />
 
+<div class="row">
+    @foreach(var recipe in this.Model.Recipes)
+    {
+        <div class="media col-md-4">
+            <img src="@recipe.ImageUrl" width="100" class="mr-3 img-responsive">
+            <div class="media-body">
+                <h5 class="mt-0"><a asp-action="ById" asp-route-id="@recipe.Id">@recipe.Name</a></h5>
+                    @recipe.CategoryName
+            </div>
+        </div>
+    }
+</div>
+
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage){<text>disabled</text>}">

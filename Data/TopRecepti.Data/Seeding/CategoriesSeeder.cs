@@ -16,10 +16,11 @@ namespace TopRecepti.Data.Seeding
                 return;
             }
 
-            await dbContext.Categories.AddAsync(new Category { Name = "Чушка" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Пай" });
             await dbContext.Categories.AddAsync(new Category { Name = "Торта" });
             await dbContext.Categories.AddAsync(new Category { Name = "Свинско" });
             await dbContext.Categories.AddAsync(new Category { Name = "Телешко" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Супи" });
 
             await dbContext.SaveChangesAsync();
         }

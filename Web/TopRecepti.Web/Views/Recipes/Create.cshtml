@@ -6,7 +6,6 @@
 
 
 <form method="post" enctype="multipart/form-data">
-    <h1>@this.ViewData["Title"]</h1>
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Name"></label>
@@ -48,7 +47,7 @@
         <a class="btn btn-secondary" onclick="AddMoreIngredients()">+</a>
         <a class="btn btn-danger" onclick="RemoveIngredient()">-</a>
     </div>
-    <input type="submit" class="btn btn-dark"/>
+    <input type="submit" class="btn btn-dark" />
 </form>
 
 @section Scripts{

@@ -46,6 +46,7 @@
     <div id="IngredientsContainer">
         <label asp-for="Ingredients"></label>
         <a class="btn btn-secondary" onclick="AddMoreIngredients()">+</a>
+        <a class="btn btn-danger" onclick="RemoveIngredient()">-</a>
     </div>
     <input type="submit" class="btn btn-dark"/>
 </form>
@@ -57,6 +58,13 @@
             console.log("AddMoreIngredients()");
             $("#IngredientsContainer").append("<div class='form-control'>Name: <input type='text' name='Ingredients[" + ingredientIndex + "].IngredientName' /> Quantity: <input type='text' name='Ingredients[" + ingredientIndex + "].Quantity' /></div>");
             ingredientIndex++;
+        }
+        function RemoveIngredient() {
+            if (ingredientIndex > 0) {
+                $("div")
+                    .remove(".form-control");
+                ingredientIndex = 0;
+            }
         }
     </script>
 }

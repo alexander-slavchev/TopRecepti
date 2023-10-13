@@ -9,13 +9,15 @@
 
     public class SingleRecipeViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string CategoryName { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        public string AddedByUserUserName { get; set; }
+        public string AddedByUserEmail { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -25,13 +27,17 @@
 
         public TimeSpan CookingTime { get; set; }
 
-        public int PortionCount { get; set; }
+        public int PortionsCount { get; set; }
+
+        public int CategoryRecipesCount { get; set; }
+
+        public string OriginalUrl { get; set; }
 
         public IEnumerable<IngredientsViewModel> Ingredients { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Recipe, RecipeInListViewModel>()
+            configuration.CreateMap<Recipe, SingleRecipeViewModel>()
                 .ForMember(x => x.ImageUrl, opt =>
                     opt.MapFrom(x =>
                         x.Images.FirstOrDefault().RemoteImageUrl != null ?

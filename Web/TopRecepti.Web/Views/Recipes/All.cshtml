@@ -4,8 +4,8 @@
 }
 <h1>@this.ViewData["Title"]</h1>
 
-<div class="row">
-    @foreach(var recipe in this.Model.Recipes)
+@* <div class="row">
+    @foreach (var recipe in this.Model.Recipes)
     {
         <div class="card" style="width: 18rem;">
             <img src="@recipe.ImageUrl" class="card-img-top" alt="...">
@@ -16,33 +16,37 @@
             </div>
         </div>
     }
-</div>
+</div> *@
 
 <hr />
 
 <div class="row">
-    @foreach(var recipe in this.Model.Recipes)
+    @foreach (var recipe in this.Model.Recipes)
     {
         <div class="media col-md-4">
-            <img src="@recipe.ImageUrl" width="100" class="mr-3 img-responsive">
+            <img src="@recipe.ImageUrl" alt="image" width="100" class="mr-3 img-responsive">
             <div class="media-body">
                 <h5 class="mt-0"><a asp-action="ById" asp-route-id="@recipe.Id">@recipe.Name</a></h5>
-                    @recipe.CategoryName
+                @recipe.CategoryName
             </div>
         </div>
     }
 </div>
 
+<hr />
+
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item @if (!Model.HasPreviousPage){<text>disabled</text>}">
+        <li class="page-item @if (!Model.HasPreviousPage){
+        <text>disabled</text>
+}">
             <a class="page-link" asp-action="All" asp-route-id="@Model.PreviousPageNumber">Previous</a>
         </li>
         @for (int i = Model.PageNumber - 3; i < Model.PageNumber; i++)
         {
-            if(i > 0)
+            if (i > 0)
             {
-        <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
             }
         }
         <li class="page-item active" aria-current="page">
@@ -51,14 +55,16 @@
                 <span class="sr-only">(current)</span>
             </span>
         </li>
-        @for (int i = Model.PageNumber +1; i <= Model.PageNumber + 3; i++)
+        @for (int i = Model.PageNumber + 1; i <= Model.PageNumber + 3; i++)
         {
             if (i < Model.PagesCount)
             {
-        <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
+                <li class="page-item"><a class="page-link" asp-action="All" asp-route-id="@i">@i</a></li>
             }
         }
-        <li class="page-item @if (!Model.HasNextPage){<text>disabled</text>}">
+        <li class="page-item @if (!Model.HasNextPage){
+        <text>disabled</text>
+}">
             <a class="page-link" asp-action="All" asp-route-id="@Model.NextPageNumber">Next</a>
         </li>
     </ul>

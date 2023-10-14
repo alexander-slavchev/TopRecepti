@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Options;
+    using MoiteRecepti.Web.ViewModels.Recipes;
     using TopRecepti.Data.Models;
     using TopRecepti.Services.Data;
     using TopRecepti.Web.ViewModels.Recipes;

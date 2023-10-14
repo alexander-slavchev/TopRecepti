@@ -451,6 +451,38 @@ namespace TopRecepti.Data.Migrations
                     b.ToTable("Settings");
                 });
 
+            modelBuilder.Entity("TopRecepti.Data.Models.Vote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<byte>("Value")
+                        .HasColumnType("tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Votes");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("TopRecepti.Data.Models.ApplicationRole", null)
@@ -555,6 +587,23 @@ namespace TopRecepti.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("TopRecepti.Data.Models.Vote", b =>
+                {
+                    b.HasOne("TopRecepti.Data.Models.Recipe", "Recipe")
+                        .WithMany("Votes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TopRecepti.Data.Models.ApplicationUser", "User")
+                        .WithMany("Votes")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TopRecepti.Data.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Claims");
@@ -562,6 +611,8 @@ namespace TopRecepti.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Votes");
                 });
 
             modelBuilder.Entity("TopRecepti.Data.Models.Category", b =>
@@ -579,6 +630,8 @@ namespace TopRecepti.Data.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Ingredients");
+
+                    b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618
         }

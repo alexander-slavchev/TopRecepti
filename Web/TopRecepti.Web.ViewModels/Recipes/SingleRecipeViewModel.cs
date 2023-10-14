@@ -1,11 +1,13 @@
-﻿namespace TopRecepti.Web.ViewModels.Recipes
+﻿namespace MoiteRecepti.Web.ViewModels.Recipes
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using AutoMapper;
     using TopRecepti.Data.Models;
     using TopRecepti.Services.Mapping;
+    using TopRecepti.Web.ViewModels.Recipes;
 
     public class SingleRecipeViewModel : IMapFrom<Recipe>, IHaveCustomMappings
     {
@@ -33,16 +35,21 @@
 
         public string OriginalUrl { get; set; }
 
+        public double AverageVote { get; set; }
+
         public IEnumerable<IngredientsViewModel> Ingredients { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Recipe, SingleRecipeViewModel>()
-                .ForMember(x => x.ImageUrl, opt =>
-                    opt.MapFrom(x =>
-                        x.Images.FirstOrDefault().RemoteImageUrl != null ?
-                        x.Images.FirstOrDefault().RemoteImageUrl :
-                        "/images/recipes/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+                .ForMember(x => x.AverageVote, opt =>
+                    opt.MapFrom(x => x.Votes.Count == 0 ? 0 : x.Votes.Average(v => v.Value)))
+                .ForMember(x => x.ImageUrl, option =>
+                    option.MapFrom(x =>
+                        x.Images.FirstOrDefault().RemoteImageUrl != null
+                            ? x.Images.FirstOrDefault().RemoteImageUrl
+                            : "/images/recipes/" + x.Images.FirstOrDefault().Id +
+                              x.Images.FirstOrDefault().Extension));
         }
     }
 }

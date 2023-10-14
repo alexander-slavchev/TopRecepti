@@ -44,12 +44,11 @@
             configuration.CreateMap<Recipe, SingleRecipeViewModel>()
                 .ForMember(x => x.AverageVote, opt =>
                     opt.MapFrom(x => x.Votes.Count == 0 ? 0 : x.Votes.Average(v => v.Value)))
-                .ForMember(x => x.ImageUrl, option =>
-                    option.MapFrom(x =>
-                        x.Images.FirstOrDefault().RemoteImageUrl != null
-                            ? x.Images.FirstOrDefault().RemoteImageUrl
-                            : "/images/recipes/" + x.Images.FirstOrDefault().Id +
-                              x.Images.FirstOrDefault().Extension));
+                 .ForMember(x => x.ImageUrl, opt =>
+                opt.MapFrom(r =>
+                    r.Images.FirstOrDefault().RemoteImageUrl != null ?
+                    r.Images.FirstOrDefault().RemoteImageUrl :
+                    "/images/recipes/" + r.Images.FirstOrDefault().Id + "." + r.Images.FirstOrDefault().Extension));
         }
     }
 }

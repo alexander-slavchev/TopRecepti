@@ -4,6 +4,6 @@
 
     public interface ICategoriesService
     {
-        IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+        IEnumerable<KeyValuePair<string, string>> GetAllAsKetValuePairs();
     }
 }

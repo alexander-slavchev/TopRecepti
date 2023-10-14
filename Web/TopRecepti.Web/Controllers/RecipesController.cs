@@ -1,15 +1,16 @@
 ﻿namespace TopRecepti.Web.Controllers
 {
+    using System.Security.Claims;
+    using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Options;
-    using MoiteRecepti.Web.ViewModels.Recipes;
     using TopRecepti.Data.Models;
     using TopRecepti.Services.Data;
     using TopRecepti.Web.ViewModels.Recipes;
+    using MoiteRecepti.Web.ViewModels.Recipes;
 
     public class RecipesController : Controller
     {
@@ -34,7 +35,7 @@
         public IActionResult Create()
         {
             var viewModel = new CreateRecipeInputModel();
-            viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            viewModel.CategoriesItems = this.categoriesService.GetAllAsKetValuePairs();
             return this.View(viewModel);
         }
 
@@ -44,13 +45,22 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.CategoriesItems = this.categoriesService.GetAllAsKetValuePairs();
                 return this.View(input);
             }
 
-            var user = await this.userManager.GetUserAsync(this.User);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.recipesService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/images");
+            try
+            {
+                await this.recipesService.CreateAsync(input, userId, $"{this.environment.WebRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                input.CategoriesItems = this.categoriesService.GetAllAsKetValuePairs();
+                return this.View(input);
+            }
 
             return this.Redirect("/");
         }

@@ -14,15 +14,17 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()
+        public IEnumerable<KeyValuePair<string, string>> GetAllAsKetValuePairs()
         {
-            return this.categoriesRepository.All().Select(x => new
+            return this.categoriesRepository.AllAsNoTracking().Select(x => new
             {
-                x.Name,
                 x.Id,
+                x.Name,
             })
-            .ToList()
-            .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+                .OrderBy(x => x.Name)
+                .ToList()
+                .Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
+
     }
 }
